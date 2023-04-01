@@ -1,0 +1,72 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Contacts API",
+      "version": "0.0.1",
+      "description": "REST CONTACTS API (WDD341) by Greg Azores",
+      "termsOfService": "http://swagger.io/terms/"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "schemes": [
+      "https",
+      "http"
+    ],
+    "tags": [
+        {
+            "name": "root",
+            "description": "This is the root endpoint"
+        }
+
+    ],
+    "paths": {
+
+      "/": {
+        "get": {
+          "tags": ["root"],
+          "description": "This is the root endpoint to test if API is working",
+          "parameters": [],
+          "responses": {}
+        }
+      }
+
+
+    },
+  
+    "components": {
+      
+      "schemas": {
+          "smoothies": {
+              "type": "object",
+              "properties": {
+                  "name": {
+                      "example": "ISLAND GREEN"
+                  },
+                  "image": {
+                      "example": "public/images/IslandGreen.png"
+                  },
+                  "alt": {
+                      "example": "PICTURE OF ISLAND GREEN SMOOTHIE"
+                  },
+                  "price": {
+                      "example": 7.99
+                  },
+                  "calories": {
+                      "example": 410
+                  },
+                  "ingredients": {
+                    "example": "spinach, kale, mango, pineapple & banana"
+                  },
+                  "quantity": {
+                    "example": 1
+                  },
+                  "category": {
+                    "example": "super-veggies"
+                  }
+              }
+          }
+      }
+  }
+
+  
+  }
