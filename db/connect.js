@@ -14,6 +14,17 @@ const initDb = (callback) => {
   //mongoose.connect(process.env.MONGODB_URI)
     .then((client) => {
       _db = client;
+
+      /* ********************** */
+      /* ONCE CONNECTED TO SERVER WE START LISTENING FOR REQUESTS */
+      // const port = process.env.PORT || 8000;
+      // const app = require('../server');
+      // app.listen(port, () => {
+      //     console.log(`Running on port ${port}`)
+      // })
+
+      /* ********************** */
+      
       callback(null, _db);
     })
     .catch((err) => {
