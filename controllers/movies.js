@@ -7,7 +7,7 @@ dotenv.config();
 async function getAll (req, res, next){
   try{
   
-  const dbQuery = await mongodb.getDb().db().collection('movies').find();
+  const dbQuery = await mongodb.getDb().db("videoRentals").collection('movies').find();
 
   console.log("--Getting all movies--")
   res.setHeader('Content-Type', 'application/json');
@@ -28,7 +28,7 @@ async function getSingle (req, res, next){
   try{
 
     const movieId = new ObjectId(req.params.id);
-    const dbQuery = await mongodb.getDb().db().collection('movies').find({ _id: movieId });
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection('movies').find({ _id: movieId });
 
 
 
@@ -47,7 +47,7 @@ async function addMovie (req, res, next){
 
   console.log("--Creating Movie Item --")
   try{
-    const dbQuery = await mongodb.getDb().db().collection('movies').insertOne({
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection('movies').insertOne({
       title: req.body.title,
       releaseYear: req.body.releaseYear,
       genre: req.body.genre,
@@ -78,7 +78,7 @@ async function updateMovie (req, res, next){
   console.log("--Updating Movie '" + movieId + "' --")
   try{
     const movieId = new ObjectId(req.params.id);
-    const dbQuery = await mongodb.getDb().db().collection('movies').replaceOne({ _id: movieId }, {
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection('movies').replaceOne({ _id: movieId }, {
       title: req.body.title,
       releaseYear: req.body.releaseYear,
       genre: req.body.genre,
@@ -116,7 +116,7 @@ async function deleteMovie (req, res, next){
   try{
 
     const movieId = new ObjectId(req.params.id);
-    const dbQuery = await mongodb.getDb().db().collection('movies').deleteOne({ _id: movieId }, true);
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection('movies').deleteOne({ _id: movieId }, true);
 
     console.log("--Deleting Movie '" + movieId + "' --");
 

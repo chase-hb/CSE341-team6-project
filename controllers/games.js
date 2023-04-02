@@ -7,7 +7,7 @@ dotenv.config();
 async function getAll (req, res, next){
   try{
   
-  const dbQuery = await mongodb.getDb().db().collection('games').find();
+  const dbQuery = await mongodb.getDb().db("videoRentals").collection("videoGames").find();
 
   console.log("--Getting all Video Games--")
   res.setHeader('Content-Type', 'application/json');
@@ -28,7 +28,7 @@ async function getSingle (req, res, next){
   try{
 
     const gameId = new ObjectId(req.params.id);
-    const dbQuery = await mongodb.getDb().db().collection('games').find({ _id: gameId });
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection("videoGames").find({ _id: gameId });
 
     
     //console.log( await result.toArray() );
@@ -50,7 +50,7 @@ async function addGame (req, res, next){
 
   console.log("--Creating Video Game Item --")
   try{
-    const dbQuery = await mongodb.getDb().db().collection('games').insertOne({
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection("videoGames").insertOne({
       title: req.body.title,
       releaseYear: req.body.releaseYear,
       platform: req.body.platform,
@@ -82,7 +82,7 @@ async function updateGame (req, res, next){
   console.log("--Updating Game '" + gameId + "' --")
   try{
     const gameId = new ObjectId(req.params.id);
-    const dbQuery = await mongodb.getDb().db().collection('games').replaceOne({ _id: gameId }, {
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection("videoGames").replaceOne({ _id: gameId }, {
       title: req.body.title,
       releaseYear: req.body.releaseYear,
       platform: req.body.platform,
@@ -121,7 +121,7 @@ async function deleteGame (req, res, next){
   try{
 
     const gameId = new ObjectId(req.params.id);
-    const dbQuery = await mongodb.getDb().db().collection('games').deleteOne({ _id: gameId }, true);
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection("videoGames").deleteOne({ _id: gameId }, true);
 
     console.log("--Deleting Video Game '" + gameId + "' --");
 

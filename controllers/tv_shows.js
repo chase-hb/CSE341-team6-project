@@ -7,7 +7,7 @@ dotenv.config();
 async function getAll (req, res, next){
   try{
   
-  const dbQuery = await mongodb.getDb().db().collection('tvShows').find();
+  const dbQuery = await mongodb.getDb().db("videoRentals").collection('shows').find();
 
   console.log("--Getting all Tv Shows--")
   res.setHeader('Content-Type', 'application/json');
@@ -28,7 +28,7 @@ async function getSingle (req, res, next){
   try{
 
     const showId = new ObjectId(req.params.id);
-    const dbQuery = await mongodb.getDb().db().collection('tvShows').find({ _id: showId });
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection('shows').find({ _id: showId });
 
     
     //console.log( await result.toArray() );
@@ -50,7 +50,7 @@ async function addShow (req, res, next){
 
   console.log("--Creating Tv Show Item--")
   try{
-    const dbQuery = await mongodb.getDb().db().collection('tvShows').insertOne({
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection('shows').insertOne({
       title: req.body.title,
       seasonReleaseYear: req.body.seasonReleaseYear,
       rating: req.body.rating,
@@ -81,7 +81,7 @@ async function updateShow (req, res, next){
   console.log("--Updating Tv Show '" + showId + "' --")
   try{
     const showId = new ObjectId(req.params.id);
-    const dbQuery = await mongodb.getDb().db().collection('tvShows').replaceOne({ _id: showId }, {
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection('shows').replaceOne({ _id: showId }, {
       title: req.body.title,
       seasonReleaseYear: req.body.seasonReleaseYear,
       rating: req.body.rating,
@@ -119,7 +119,7 @@ async function deleteShow (req, res, next){
   try{
 
     const showId = new ObjectId(req.params.id);
-    const dbQuery = await mongodb.getDb().db().collection('tvShows').deleteOne({ _id: showId }, true);
+    const dbQuery = await mongodb.getDb().db("videoRentals").collection('shows').deleteOne({ _id: showId }, true);
 
     console.log("--Deleting Tv Show Item '" + showId + "' --");
 
