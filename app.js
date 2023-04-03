@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = require('./routes');
 const mongodb = require('./db/connect');
+const port = process.env.PORT || 8000;
 
 
 //so we can access the body contents inside request and response
@@ -30,8 +31,14 @@ app.use('/', router);
 //TO DATABASE, WE NEED TO EXPORT APP
 //module.exports = app
 
-//OTHERWISE WE CAN LISTEN HERE
-const port = process.env.PORT || 8000;
-app.listen(port, () => {
-    console.log(`Running on port ${port}`)
-})
+
+mongodb.initDb((err, mongodb) => {
+  if (err) {
+    console.log(`Sorry, we were unable to connect to the DB. ` + err);
+  } else {
+    app.listen(port);
+    console.log(`Connected to DB and listening on ${port}`);
+  }
+  
+});
+
