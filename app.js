@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const router = require('./routes');
+const mongodb = require('./db/connect');
+
 
 //so we can access the body contents inside request and response
 app.use(express.urlencoded({extended: false}))
