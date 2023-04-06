@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+</head>
+<body>
+<h2>Games</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Size</th>
+                <th>Multiplayer</th>
+                <th>ControllerSupport</th>
+                <th>Developer</th> 
+                <th>Publisher</th> 
+                <th>ReleaseDate</th>  
+                <th>Platform</th>
+            </tr>
+
+        </thead>
+        <tbody id="data">
+
+        </tbody>
+    </table>
+    <h2>Movies</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Release Year</th>
+                <th>Genre</th>
+                <th>Rating</th>
+                <th>Director</th> 
+            </tr>
+
+        </thead>
+        <tbody id="movie">
+
+        </tbody>
+    </table>
+    <h2>Tv-Shows</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Season</th>
+                <th>Rating</th>
+                <th>Season Realase Year</th>
+                <th>Genre</th> 
+            </tr>
+
+        </thead>
+        <tbody id="show">
+
+        </tbody>
+    </table>
+    <script>
+
+      gamesuri = "http://localhost:8000/games"; 
+      moviesuri = "http://localhost:8000/movies";
+      tvshows = "http://localhost:8000/shows";
+      buildGameTable(gamesuri)
+      buildShow(tvshows)
+      buildMovies(moviesuri)
+ //Games     
+  function buildGameTable(data){
+    fetch(data).then(
+      res=>{
+        res.json().then(
+          data=>{
+            console.log(data);
+            if(data.length > 0){
+              var temp = " ";
+              data.forEach((u) => {
+                temp += "<tr>";
+                temp += "<td>" + u.title + "</td>";
+                temp += "<td>" + u.size + "</td>";
+                temp += "<td>" + u.multiplayer + "</td>";
+                temp += "<td>" + u.controllerSupport + "</td>";
+                temp += "<td>" + u.developer + "</td>";
+                temp += "<td>" + u.publisher + "</td>";
+                temp += "<td>" + u.releaseDate + "</td>";
+                temp += "<td>" + u.platform + "</td>";
+                temp +="<br>"
+                document.getElementById("data").innerHTML = temp;
+              })
+              
+            }
+
+          }
+        )
+      }
+    )
+  }
+
+//Movies
+function buildMovies(data) {
+
+  fetch(data).then(
+      res=>{
+        res.json().then(
+          data=>{
+            console.log(data);
+            if(data.length > 0){
+              var temp = " ";
+              data.forEach((u) => {
+                temp += "<tr>";
+                temp += "<td>" + u.title + "</td>";
+                temp += "<td>" + u.releaseYear + "</td>";
+                temp += "<td>" + u.genre+ "</td>";
+                temp += "<td>" + u.rating + "</td>";
+                temp += "<td>" + u.director + "</td>";
+                temp +="<br>"
+                document.getElementById("movie").innerHTML = temp;
+              })
+              
+            }
+
+          }
+        )
+      }
+    ) 
+
+} 
+
+//TV-Shows
+function buildShow(data) {
+  fetch(data).then(
+      res=>{
+        res.json().then(
+          data=>{
+            console.log(data);
+            if(data.length > 0){
+              var temp = " ";
+              data.forEach((u) => {
+                temp += "<tr>";
+                temp += "<td>" + u.title + "</td>";
+                temp += "<td>" + u.season + "</td>";
+                temp += "<td>" + u.rating + "</td>";
+                temp += "<td>" + u.seasonReleaseYear + "</td>";
+                temp += "<td>" + u.genre + "</td>";
+                temp +="<br>"
+              
+                document.getElementById("show").innerHTML = temp;
+              })
+              
+            }
+
+          }
+        )
+      }
+    ) 
+}
+
+
+    </script>
+    
+</body>
+</html>
+
+
+
