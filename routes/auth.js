@@ -14,7 +14,7 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
   });
 // Displays Dashboard Once Signed in
 router.get('/dashboard', (req, res) => {
-  res.send('WOOOOOOOO GET request to the dashboard')
+  res.send('GET request to the dashboard')
 })
 
 
