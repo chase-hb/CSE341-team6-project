@@ -9,8 +9,6 @@ const passport = require('passport');
 require('dotenv').config();
 // PASSPORT CONFIG
 require('./config/passport')(passport);
-
-
 //so we can access the body contents inside request and response
 app.use(express.urlencoded({extended: false}))
 //so we can use json data as well
@@ -29,7 +27,10 @@ app.use((req, res, next) => {
       return res.sendStatus(200);
     }
     next();
-  });
+});
+
+
+app.use('/frontPage', express.static('./public'));
 
 app.use('/', router);
 
